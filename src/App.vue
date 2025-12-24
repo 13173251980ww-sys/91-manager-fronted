@@ -1,23 +1,10 @@
 <script setup>
-  import axios from "axios";
-  import {onMounted, ref} from "vue";
-
-  const name=ref("")
-  const getName=async function (){
-    const res=await axios.get("/api/test");
-    name.value=res.data.name;
-  }
-  onMounted(()=>{
-      getName()
-    }
-  )
+  import index from "@/views/index.vue";
 </script>
 
 
 <template>
-  <p>
-    {{name}}
-  </p>
+  <RouterView/>
 </template>
 
 <style scoped></style>
