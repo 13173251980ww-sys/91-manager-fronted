@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 import {ref} from 'vue'
-import {deleteUserApi, getUsersApi} from "@/apis/user.js";
+import {deleteUserApi, getUsersApi,addUserApi,editUserApi} from "@/apis/user.js";
 
 export const useUserStores =defineStore('users',()=>{
     const userList=ref([])
@@ -14,10 +14,20 @@ export const useUserStores =defineStore('users',()=>{
         await getUsers()
 
     }
+    const addUser =async()=>{
+        await addUserApi();
+        await getUsers()
+    }
+    const editUser=async(user)=>{
+        await editUserApi(user)
+        await getUsers()
+    }
 
     return{
         userList,
         getUsers,
-        deleteUser
+        deleteUser,
+        addUser,
+        editUser
     }
 })

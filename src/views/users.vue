@@ -1,23 +1,39 @@
 <script setup>
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 import {useUserStores} from "@/stores/userStores.js";
+import Edit from './edit.vue'
 
 const userStores = useUserStores();
+const editVisible =ref(false)
+const name=ref("")
+const currentUser=ref(null)
 onMounted(() => {
   userStores.getUsers()
 })
 
 const onDelete = function (user_account) {
-  console.log(user_account)
   userStores.deleteUser(user_account)
 }
 
-const onEdit = function () {
-
+const onEdit = function (row) {
+  //数据回填
+  currentUser.value=row;
+  name.value=row.user_name
+  editVisible.value=true;
 }
 
 const onAdd = function () {
+  userStores.addUser()
+}
 
+const onConfirm=function (newData){
+  //更新数据.....
+  currentUser.value.name=newData.name;
+
+  //调接口，传对象更新数据
+  userStores.editUser(newData)
+
+  editVisible.value=false;
 }
 </script>
 
@@ -40,6 +56,9 @@ const onAdd = function () {
   </el-table>
 
   <el-button type="primary" @click="onAdd()">添加</el-button>
+
+<!--  打开添加页面——填写数据——更新列表-->
+  <Edit :displaiable="editVisible" :name="name" @on-confirm="onConfirm"/>
 </template>
 
 <style scoped>
