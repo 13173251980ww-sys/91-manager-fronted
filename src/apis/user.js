@@ -6,3 +6,10 @@ export function getUsersApi(){
     })
 }
 
+
+export function deleteUserApi(user_account){
+    return httpInstance({
+        url:`/user/${user_account}`,
+        method:'DELETE'
+    })
+}
