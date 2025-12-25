@@ -7,7 +7,7 @@ export const useUserStores =defineStore('users',()=>{
 
     const getUsers =async()=>{
         const res=await getUsersApi();
-        userList.value=res.data;
+        userList.value=res.data.data;
     }
 
     return{

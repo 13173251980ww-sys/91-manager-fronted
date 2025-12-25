@@ -7,7 +7,8 @@ export const useChickenStores =defineStore('chickens',()=>{
 
     const getChickens =async()=>{
         const res =await getChickenApi();
-        chickList.value=res.data;
+        chickList.value=res.data.data;
+        console.log(chickList.value)
     }
 
     return{

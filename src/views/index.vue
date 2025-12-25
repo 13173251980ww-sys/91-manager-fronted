@@ -1,14 +1,25 @@
 <script setup>
+import Head from '@/views/head.vue'
+import asideNav from '@/views/asideNav.vue'
 
 
 </script>
 
 <template>
-  <RouterLink to="/index/users">用户表</RouterLink>
-  <RouterLink to="/index/chickens">鸡表</RouterLink>
-  <RouterView/>
+  <div class="common-layout">
+    <el-container>
+      <el-header
+        style="padding: 0"
+      ><Head /></el-header>
+      <el-container>
+        <el-aside width="200px"><asideNav /></el-aside>
+        <el-main><RouterView /></el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <style scoped>
+
 
 </style>
