@@ -1,7 +1,6 @@
 <script setup>
-import {onMounted, ref} from "vue";
+import {defineAsyncComponent, defineComponent, onMounted, ref} from "vue";
 import {useUserStores} from "@/stores/userStores.js";
-import Edit from './edit.vue'
 
 const userStores = useUserStores();
 const editVisible =ref(false)
@@ -35,6 +34,10 @@ const onConfirm=function (newData){
 
   editVisible.value=false;
 }
+
+const Edit =defineAsyncComponent(()=>
+  import('@/views/edit.vue')
+)
 </script>
 
 <template>

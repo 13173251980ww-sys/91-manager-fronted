@@ -1,7 +1,8 @@
 import {createRouter, createWebHistory} from "vue-router";
-import index from '@/views/index.vue'
-import users from '@/views/users.vue'
-import chickens from '@/views/chickens.vue'
+// import index from '@/views/index.vue'
+// import users from '@/views/users.vue'
+// import chickens from '@/views/chickens.vue'
+//路由懒加载指令优化
 
 const router =createRouter({
     // 创建路由历史记录
@@ -11,10 +12,10 @@ const router =createRouter({
         {path:'/',redirect:'/index'},
         {
             path:'/index',
-            component:index,
+            component:()=>import('@/views/index.vue'),
             children:[
-                {path:'users',component:users},
-                {path:'chickens',component:chickens}
+                {path:'users',component:()=>import('@/views/users.vue')},
+                {path:'chickens',component:()=>import('@/views/chickens.vue')}
             ]
         }
     ]
