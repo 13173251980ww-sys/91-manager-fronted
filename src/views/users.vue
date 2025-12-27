@@ -51,9 +51,9 @@ const Edit =defineAsyncComponent(()=>
     <el-table-column prop="user_imp" label="个性签名" width="150"/>
     <el-table-column prop="user_hobby" label="爱好" width="150"/>
     <el-table-column label="操作">
-      <template #default="{row}">
-        <el-button type="primary" @click="onEdit(row)">编辑</el-button>
-        <el-button type="danger" @click="onDelete(row.user_account)">删除</el-button>
+      <template #default="slotProps">
+        <el-button type="primary" @click="onEdit(slotProps.row)">编辑</el-button>
+        <el-button type="danger" @click="onDelete(slotProps.row.user_account)">删除</el-button>
       </template>
     </el-table-column>
   </el-table>
