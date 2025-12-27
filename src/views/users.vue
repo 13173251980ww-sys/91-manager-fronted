@@ -1,5 +1,6 @@
 <script setup>
-import {defineAsyncComponent, defineComponent, onMounted, ref} from "vue";
+import {defineAsyncComponent, onMounted, ref} from "vue";
+import tableUI from "@/components/tableUI.vue"
 import {useUserStores} from "@/stores/userStores.js";
 
 const userStores = useUserStores();
@@ -42,7 +43,13 @@ const Edit =defineAsyncComponent(()=>
 
 <template>
 
-  <el-table :data="userStores.userList" style="width: 100%">
+  <el-button type="primary" @click="onAdd()">添加</el-button>
+  <tableUI
+      :data="userStores.userList"
+      @add="onAdd"
+      @delete="onDelete"
+      @edit="onEdit"
+  >
     <el-table-column prop="user_nick" label="昵称" width="150"/>
     <el-table-column prop="user_pwd" label="密码" width="150"/>
     <el-table-column prop="user_sex" label="性别" width="150"/>
@@ -50,17 +57,9 @@ const Edit =defineAsyncComponent(()=>
     <el-table-column prop="user_img" label="头像URL" width="150"/>
     <el-table-column prop="user_imp" label="个性签名" width="150"/>
     <el-table-column prop="user_hobby" label="爱好" width="150"/>
-    <el-table-column label="操作">
-      <template #default="slotProps">
-        <el-button type="primary" @click="onEdit(slotProps.row)">编辑</el-button>
-        <el-button type="danger" @click="onDelete(slotProps.row.user_account)">删除</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+  </tableUI>
 
-  <el-button type="primary" @click="onAdd()">添加</el-button>
-
-<!--  打开添加页面——填写数据——更新列表-->
+<!--  打开编辑页面——填写数据——更新列表-->
   <Edit :displaiable="editVisible" :name="name" @on-confirm="onConfirm"/>
 </template>
 
