@@ -42,8 +42,7 @@ const Edit =defineAsyncComponent(()=>
 </script>
 
 <template>
-
-  <el-button type="primary" @click="onAdd()">添加</el-button>
+  
   <tableUI
       :data="userStores.userList"
       @add="onAdd"

@@ -8,8 +8,8 @@ import axios from 'axios'
 // })
 
 const httpInstance=axios.create({
-    // baseURL:"/api",
-    baseURL:"http://127.0.0.1:4523/m1/7617949-7356892-default",
+    baseURL:"/api",
+    // baseURL:"http://127.0.0.1:4523/m1/7617949-7356892-default",
     timeout:5000
 })
 
